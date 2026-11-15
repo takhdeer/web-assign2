@@ -4,14 +4,87 @@
 
 
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
     </head>
-    
-    <main>
+
+
+    <body class="flex min-h-screen flex-col bg-stone-50 text-stone-800">
+
+        <header class="sticky top-0 z-40 border-b border-stone-200 bg-white/90 ">
+            <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
+                <a href="#" data-view="home" class="text-2xl font-extrabold tracking-tight text-brand-700">
+                    (Logo)
+                </a>
+                
+                <ul class="flex items-center gap-1 text-sm font-medium sm:gap-4">
+                    <li><a href="#" data-view="home" class="nav-link">Home</a></li>
+                    <li><a href="#" data-view="browse" class="nav-link">Browse</a></li>
+                    <li><a href="#" data-view="category" class="nav-link">Category</a></li>
+                    <li><button type="button" id="about-open" class="nav-link">About</button></li>
+                </ul>
+                
+                <a href="#" data-view="cart" class="relative flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold hover:bg-stone-100">Cart</a>
+            </nav>
+        </header>
+        
+    <main class="mx-auto w-full max-w-7xl flex-1 px-4 py-8">
+
+        <!-- home view -->
+        <article id="home" class="view">
+            <section class="relative overflow-hidden rounded-3xl">
+                (Home)
+
+            </section>
+            
+        </article>
+
+        <!-- category view -->
+        <article id="category" class="view hidden">
+            (Category)
+        </article>
+
+
+
+        <!-- browse view -->
+        <article id="browse" class="view hidden">
+            (Browse)
+        </article>
+
+        <!-- single product view -->
+        <article id="singleProduct" class="view hidden">
+            (Single Product)
+
+        </article>
+
+        <!-- shopping cart view -->
+        <article id="cart" class="view hidden">
+            (Shopping Cart)
+        </article>
 
     </main>
 
-    <footer>
+    <footer class="border-t border-stone-200 bg-white">
+        <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 text-sm text-stone-500 sm:flex-row sm:items-center sm:justify-between">
+            <p>&copy;2026 COMP 3612 Assignment 2</p>
+            <ul class="flex gap-4">
+                <li><a href="https://github.com/takhdeer/web-assign2">Assignment Github repo</a></li>
+                <li><a href="https://github.com/takhdeer">Takhdeer's Github</a></li>
+                <li><a href="https://github.com/AaronArrieta">Aaron's Github</a></li>
+            </ul>
+        </div>
+
     </footer>
-    
-    
+
+    <!-- about dialog -->
+    <dialog id="about" class="m-auto w-full max-w-2xl rounded-3xl p-0 shadow-2xl backdrop:bg-stone-900/60">
+        <form method="dialog" class="relative p-8">
+            <button type="submit" aria-label="Close" class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-xl text-stone-500 hover:bg-stone-100">
+                &times;
+            </button>       
+        (About)
+        </form>
+    </dialog>
+</body>
 </html>
