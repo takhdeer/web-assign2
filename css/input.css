@@ -2,6 +2,16 @@
 @source "../index.html";
 @source "../js";
 
+@theme {
+    --color-brand-50:  #eef6f3;
+    --color-brand-100: #d5ebe2;
+    --color-brand-200: #acd6c6;
+    --color-brand-500: #2f8f6f;
+    --color-brand-600: #23775b;
+    --color-brand-700: #1c5f49;
+    --color-brand-800: #164b3a;
+}
+
 @layer components {
     .nav-link {
         @apply rounded-full px-3 py-1.5 text-stone-600 hover:bg-stone-100 hover:text-stone-900;
