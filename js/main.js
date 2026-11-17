@@ -2,6 +2,7 @@ import { getProducts } from './data.js';
 import { createProductCard } from './components.js';
 import { addToCart, getCart, getCartCount, decreaseQuanity, getItemQuantity } from './cart.js';
 import { showView, initRouter } from './router.js';
+import { renderSingleProduct } from './product.js';
 
 // Router: Start on home view
 initRouter();
@@ -22,13 +23,41 @@ updateCartCount();
 const products = await getProducts();
 console.log(products);
 
+// Single product
+document.addEventListener("click", (e) => {
+    if (e.target.dataset.view !== "product") {
+        return;
+    }
+
+    const id = Number(e.target.dataset.id);
+    for (const p of products) {
+        if (p.id === id) {
+            renderSingleProduct(p);
+            return;
+        }
+    }
+});
+
 // Featured Grid 
 
 const featuredGrid = document.querySelector("#featured-grid");
-for (let i = 0 ; i < 4 ; i++) {
-    const card = createProductCard(products[i]);
-    featuredGrid.appendChild(card);
+const featuredMax = 4;
+let featuredCount = 0;
+
+for (const p of products) {
+    if (featuredCount == featuredMax) {
+        break;
+    }
+    if (Math.round(p.rating) == 5){
+        featuredGrid.appendChild(createProductCard(p));
+        featuredCount += 1;
+    }
 }
+// for (let i = 0 ; i < 4 ; i++) {
+//     const card = createProductCard(products[i]);
+//     featuredGrid.appendChild(card);
+// }
+
 
 const aboutButton = document.querySelector("#about-open");
 const aboutDialog = document.querySelector("#about");
