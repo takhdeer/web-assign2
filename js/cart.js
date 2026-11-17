@@ -42,3 +42,12 @@ export function decreaseQuanity(productId) {
     existing.quantity -= 1; 
     setCart(cart);
 }
+
+export function getCartCount() {
+    const cart = getCart();
+    let items = 0;
+    cart.map(c => {
+        items += c.quantity;
+    })
+    return items;
+}

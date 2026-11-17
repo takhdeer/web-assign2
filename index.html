@@ -25,7 +25,10 @@
                     <li><button type="button" id="about-open" class="nav-link">About</button></li>
                 </ul>
                 
-                <a href="#" data-view="cart" class="relative flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold hover:bg-stone-100">Cart</a>
+                <div style="display: flex;">
+                    <a href="#" data-view="cart" class="relative flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold hover:bg-stone-100">Cart</a>
+                    <span id="cart-count" class="view hidden">0</span>
+                </div>
             </nav>
         </header>
         

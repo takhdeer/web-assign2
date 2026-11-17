@@ -1,6 +1,6 @@
 import { getProducts } from './data.js';
 import { createProductCard } from './components.js';
-import { addToCart, decreaseQuanity } from './cart.js';
+import { addToCart, getCartCount, decreaseQuanity } from './cart.js';
 
 const products = await getProducts();
 console.log(products);
@@ -23,10 +23,18 @@ aboutButton.addEventListener("click", () => {
 const main = document.querySelector('main')
 
 // Add to Cart functionality
+function updateCartCount(cartCount) {
+    const cartVal = document.querySelector('#cart-count');
+    cartVal.textContent = cartCount
+    cartVal.classList.remove('hidden')
+};
+
 main.addEventListener('click', (e) => {
     const btn = e.target.closest('button[aria-label="Add to cart"]');
     if (btn === null) { return }
     else {
         addToCart(btn.dataset.id)
+        const cartCount = getCartCount();
+        updateCartCount(cartCount);
     }
 })
