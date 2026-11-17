@@ -1,6 +1,11 @@
 import { getProducts } from './data.js';
 import { createProductCard } from './components.js';
 import { addToCart, getCart, getCartCount, decreaseQuanity, getItemQuantity } from './cart.js';
+import { showView, initRouter } from './router.js';
+
+// Router: Start on home view
+initRouter();
+showView("home");
 
 // Initialising Cart
 function updateCartCount() {
