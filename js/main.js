@@ -1,7 +1,19 @@
 import { getProducts } from './data.js';
 import { createProductCard } from './components.js';
-import { addToCart, decreaseQuanity } from './cart.js';
+import { addToCart, getCart, getCartCount, decreaseQuanity } from './cart.js';
 
+// Initialising Cart
+function updateCartCount() {
+    const cart = getCart();
+    const cartVal = document.querySelector('#cart-count');
+    const count = getCartCount();
+    cartVal.textContent = `(${count})`;
+    cartVal.classList.toggle('hidden', count === 0);
+};
+
+updateCartCount();
+
+// Products fetch
 const products = await getProducts();
 console.log(products);
 
@@ -27,6 +39,7 @@ main.addEventListener('click', (e) => {
     const btn = e.target.closest('button[aria-label="Add to cart"]');
     if (btn === null) { return }
     else {
-        addToCart(btn.dataset.id)
+        addToCart(btn.dataset.id);
+        updateCartCount();
     }
 })
