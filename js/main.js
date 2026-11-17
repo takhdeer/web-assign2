@@ -1,6 +1,6 @@
 import { getProducts } from './data.js';
 import { createProductCard } from './components.js';
-import { addToCart, getCart, getCartCount, decreaseQuanity } from './cart.js';
+import { addToCart, getCart, getCartCount, decreaseQuanity, getItemQuantity } from './cart.js';
 
 // Initialising Cart
 function updateCartCount() {
@@ -34,12 +34,28 @@ aboutButton.addEventListener("click", () => {
 // Main document functionality
 const main = document.querySelector('main')
 
-// Add to Cart functionality
+// Show/hide the minus button(s) 
+function updateRemoveButtons(productId) {
+    const quantity = getItemQuantity(productId);
+    document
+        .querySelectorAll(`button[aria-label="Remove from cart"][data-id="${productId}"]`)
+        .forEach(btn => { btn.hidden = quantity === 0; });
+}
+
+getCart().forEach(item => updateRemoveButtons(item.id));
+
+// Add / Remove from Cart functionality
 main.addEventListener('click', (e) => {
-    const btn = e.target.closest('button[aria-label="Add to cart"]');
+    const addBtn = e.target.closest('button[aria-label="Add to cart"]');
+    const removeBtn = e.target.closest('button[aria-label="Remove from cart"]');
+    const btn = addBtn ?? removeBtn;
     if (btn === null) { return }
-    else {
+
+    if (addBtn) {
         addToCart(btn.dataset.id);
-        updateCartCount();
+    } else {
+        decreaseQuanity(btn.dataset.id);
     }
+    updateCartCount();
+    updateRemoveButtons(btn.dataset.id);
 })

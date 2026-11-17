@@ -1,5 +1,4 @@
 
-
 function createParagraph(className, text) {
     const para = document.createElement("p");
     para.className = className;
@@ -23,6 +22,18 @@ function createAddButton(product) {
     button.dataset.id = product.id;
     button.setAttribute("aria-label", "Add to cart");
     button.textContent = "+";
+    return button;
+}
+
+// Hidden by default
+function createRemoveButton(product) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.hidden = true;
+    button.className = "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-600 text-lg text-white hover:bg-brand-700";
+    button.dataset.id = product.id;
+    button.setAttribute("aria-label", "Remove from cart");
+    button.textContent = "−";
     return button;
 }
 
@@ -88,7 +99,12 @@ export function createProductCard(product) {
     const body = document.createElement("div");
     body.className = "flex items-center justify-between gap-3 p-4";
     body.appendChild(info);
-    body.appendChild(createAddButton(product));
+
+    const actions = document.createElement("div");
+    actions.className = "flex shrink-0 items-center gap-2";
+    actions.appendChild(createRemoveButton(product));
+    actions.appendChild(createAddButton(product));
+    body.appendChild(actions);
 
     // card div
     const card = document.createElement("div");

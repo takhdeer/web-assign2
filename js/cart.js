@@ -43,6 +43,11 @@ export function decreaseQuanity(productId) {
     setCart(cart);
 }
 
+export function getItemQuantity(productId) {
+    const existing = getCart().find(p => p.id === productId);
+    return existing ? existing.quantity : 0;
+}
+
 export function getCartCount() {
     const cart = getCart();
     let items = 0;
