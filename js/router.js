@@ -1,3 +1,5 @@
+import { renderCartView } from "./view/cartView.js";
+
 const viewIDs = {
     home: "home",
     category: "category",
@@ -29,6 +31,13 @@ export function initRouter() {
         
         // check if navigation click
         if (viewName === undefined) {
+            return;
+        }
+
+        if (viewName === "cart") {
+            e.preventDefault();
+            showView(viewName);
+            renderCartView();
             return;
         }
 
