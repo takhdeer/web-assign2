@@ -3,13 +3,9 @@ import { createProductCard } from './components.js';
 import { addToCart, getCart, getCartCount, decreaseQuanity, getItemQuantity } from './cart.js';
 import { showView, initRouter } from './router.js';
 
-// Router: Start on home view
-initRouter();
-showView("home");
 
 // Initialising Cart
 function updateCartCount() {
-    const cart = getCart();
     const cartVal = document.querySelector('#cart-count');
     const count = getCartCount();
     cartVal.textContent = `(${count})`;
@@ -21,6 +17,10 @@ updateCartCount();
 // Products fetch
 const products = await getProducts();
 console.log(products);
+
+// Router: Start on home view
+initRouter(products);
+showView("home");
 
 // Featured Grid 
 
