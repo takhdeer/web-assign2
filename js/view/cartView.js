@@ -3,15 +3,15 @@ import { createProductLink, createAddButton, createRemoveButton } from "../compo
 
 function getProduct(products) {
     const cart = getCart();
+    const cartProducts = [];
     for (const c of cart) {
         const product = products.find(p => p.id === Number(c.id));
-        return product;
+        cartProducts.push(product)
     };
-    
+    return cartProducts;
 }
 
-function createProductRow(products) {
-    const product = getProduct(products);
+function createProductRow(product) {
 
     const imgLink = createProductLink(product, "view");
     const img = document.createElement('img');
@@ -55,6 +55,9 @@ export function renderCartView(products) {
     const cartContainer = document.querySelector('#cart');
     cartContainer.textContent = ""      // empty for now
     
-    const productRow = createProductRow(products);
-    cartContainer.appendChild(productRow);
+    const cartProducts = getProduct(products);
+    for (const product of cartProducts) {
+        const productRow = createProductRow(product);
+        cartContainer.appendChild(productRow);
+    }
 }
