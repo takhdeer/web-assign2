@@ -2,7 +2,7 @@ import { getProducts } from './data.js';
 import { createProductCard } from './components.js';
 import { addToCart, getCartCount, decreaseQuanity, getItemQuantity } from './cart.js';
 import { showView, initRouter } from './router.js';
-import { renderSingleProduct } from './product.js';
+import { renderSingleProduct, initProductView } from './product.js';
 import { renderCartView, initShippingListeners } from './view/cartView.js';
 
 
@@ -15,6 +15,11 @@ function updateCartCount() {
 };
 
 updateCartCount();
+
+initProductView((productId) => {
+    updateCartCount();
+    updateRemoveButtons(productId);
+})
 
 // Products fetch
 const products = await getProducts();
