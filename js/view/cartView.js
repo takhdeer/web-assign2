@@ -1,4 +1,4 @@
-import { getCart, getCartCount, getItemQuantity } from "../cart.js";
+import { getCart, getItemQuantity } from "../cart.js";
 import { createProductLink, createAddButton, createRemoveButton } from "../components.js";
 
 function getProduct(products) {
@@ -32,7 +32,7 @@ function createProductRow(product) {
 
     const quantity = document.createElement('p');
     quantity.id = 'quantity';
-    quantity.textContent = product.quantity;
+    quantity.textContent = getItemQuantity(String(product.id));
     info.appendChild(quantity);
 
     const actions = document.createElement("div");
