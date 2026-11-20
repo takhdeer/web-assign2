@@ -1,3 +1,5 @@
+import { renderCartView } from "./view/cartView.js";
+
 const viewIDs = {
     home: "home",
     category: "category",
@@ -23,12 +25,19 @@ export function showView(viewName) {
     window.scrollTo(0,0);
 }
 
-export function initRouter() {
+export function initRouter(products) {
     document.addEventListener("click", (e) => {
         const viewName = e.target.dataset.view;
         
         // check if navigation click
         if (viewName === undefined) {
+            return;
+        }
+
+        if (viewName === "cart") {
+            e.preventDefault();
+            showView(viewName);
+            renderCartView(products);
             return;
         }
 

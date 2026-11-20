@@ -1,3 +1,4 @@
+import { getItemQuantity } from "./cart.js";
 
 function createParagraph(className, text) {
     const para = document.createElement("p");
@@ -6,7 +7,7 @@ function createParagraph(className, text) {
     return para;
 }
 
-function createProductLink(product, className) {
+export function createProductLink(product, className) {
     const link = document.createElement("a");
     link.href = "#";
     link.className = className;
@@ -15,7 +16,7 @@ function createProductLink(product, className) {
     return link;
 }
 
-function createAddButton(product) {
+export function createAddButton(product) {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-600 text-lg text-white hover:bg-brand-700";
@@ -25,11 +26,11 @@ function createAddButton(product) {
     return button;
 }
 
-// Hidden by default
-function createRemoveButton(product) {
+// hidden unless the product is already in the cart
+export function createRemoveButton(product) {
     const button = document.createElement("button");
     button.type = "button";
-    button.hidden = true;
+    button.hidden = getItemQuantity(String(product.id)) === 0;
     button.className = "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-600 text-lg text-white hover:bg-brand-700";
     button.dataset.id = product.id;
     button.setAttribute("aria-label", "Remove from cart");
