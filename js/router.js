@@ -25,7 +25,7 @@ export function showView(viewName) {
     window.scrollTo(0,0);
 }
 
-export function initRouter() {
+export function initRouter(products) {
     document.addEventListener("click", (e) => {
         const viewName = e.target.dataset.view;
         
@@ -37,7 +37,7 @@ export function initRouter() {
         if (viewName === "cart") {
             e.preventDefault();
             showView(viewName);
-            renderCartView();
+            renderCartView(products);
             return;
         }
 

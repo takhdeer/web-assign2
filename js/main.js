@@ -1,15 +1,12 @@
 import { getProducts } from './data.js';
 import { createProductCard } from './components.js';
-import { addToCart, getCart, getCartCount, decreaseQuanity, getItemQuantity } from './cart.js';
+import { addToCart, getCartCount, decreaseQuanity, getItemQuantity } from './cart.js';
 import { showView, initRouter } from './router.js';
+import { renderCartView, initShippingListeners } from './view/cartView.js';
 
-// Router: Start on home view
-initRouter();
-showView("home");
 
 // Initialising Cart
 function updateCartCount() {
-    const cart = getCart();
     const cartVal = document.querySelector('#cart-count');
     const count = getCartCount();
     cartVal.textContent = `(${count})`;
@@ -21,6 +18,11 @@ updateCartCount();
 // Products fetch
 const products = await getProducts();
 console.log(products);
+
+// Router: Start on home view
+initRouter(products);
+initShippingListeners(products);
+showView("home");
 
 // Featured Grid 
 
@@ -47,8 +49,6 @@ function updateRemoveButtons(productId) {
         .forEach(btn => { btn.hidden = quantity === 0; });
 }
 
-getCart().forEach(item => updateRemoveButtons(item.id));
-
 // Add / Remove from Cart functionality
 main.addEventListener('click', (e) => {
     const addBtn = e.target.closest('button[aria-label="Add to cart"]');
@@ -63,4 +63,9 @@ main.addEventListener('click', (e) => {
     }
     updateCartCount();
     updateRemoveButtons(btn.dataset.id);
+
+    // re-render the cart so quantities update and empty rows disappear
+    if (!document.querySelector('#cart').classList.contains('hidden')) {
+        renderCartView(products);
+    }
 })
