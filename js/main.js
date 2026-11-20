@@ -2,7 +2,7 @@ import { getProducts } from './data.js';
 import { createProductCard } from './components.js';
 import { addToCart, getCartCount, decreaseQuanity, getItemQuantity } from './cart.js';
 import { showView, initRouter } from './router.js';
-import { renderCartView } from './view/cartView.js';
+import { renderCartView, initShippingListeners } from './view/cartView.js';
 
 
 // Initialising Cart
@@ -21,6 +21,7 @@ console.log(products);
 
 // Router: Start on home view
 initRouter(products);
+initShippingListeners(products);
 showView("home");
 
 // Featured Grid 
