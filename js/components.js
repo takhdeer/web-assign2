@@ -88,7 +88,7 @@ export function createProductCard(product) {
     titleLink.textContent = product.title;
     info.appendChild(titleLink);
 
-    const category = createParagraph("text-sm text-gray-500", product.category);
+    const category = createParagraph("text-sm text-gray-500 capitalize", product.category);
     info.appendChild(category);
 
     info.appendChild(createStarRating(product.rating));

@@ -2,6 +2,7 @@ import { getProducts } from './data.js';
 import { createProductCard } from './components.js';
 import { addToCart, getCartCount, decreaseQuanity, getItemQuantity } from './cart.js';
 import { showView, initRouter } from './router.js';
+import { renderSingleProduct, initProductView } from './product.js';
 import { renderCartView, initShippingListeners } from './view/cartView.js';
 
 
@@ -15,10 +16,29 @@ function updateCartCount() {
 
 updateCartCount();
 
+initProductView((productId) => {
+    updateCartCount();
+    updateRemoveButtons(productId);
+})
+
 // Products fetch
 const products = await getProducts();
 console.log(products);
 
+// Single product
+document.addEventListener("click", (e) => {
+    if (e.target.dataset.view !== "product") {
+        return;
+    }
+
+    const id = Number(e.target.dataset.id);
+    for (const p of products) {
+        if (p.id === id) {
+            renderSingleProduct(p);
+            return;
+        }
+    }
+});
 // Router: Start on home view
 initRouter(products);
 initShippingListeners(products);
@@ -27,10 +47,23 @@ showView("home");
 // Featured Grid 
 
 const featuredGrid = document.querySelector("#featured-grid");
-for (let i = 0 ; i < 4 ; i++) {
-    const card = createProductCard(products[i]);
-    featuredGrid.appendChild(card);
+const featuredMax = 4;
+let featuredCount = 0;
+
+for (const p of products) {
+    if (featuredCount == featuredMax) {
+        break;
+    }
+    if (Math.round(p.rating) == 5){
+        featuredGrid.appendChild(createProductCard(p));
+        featuredCount += 1;
+    }
 }
+// for (let i = 0 ; i < 4 ; i++) {
+//     const card = createProductCard(products[i]);
+//     featuredGrid.appendChild(card);
+// }
+
 
 const aboutButton = document.querySelector("#about-open");
 const aboutDialog = document.querySelector("#about");
