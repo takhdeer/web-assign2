@@ -4,6 +4,7 @@ import { addToCart, getCartCount, decreaseQuanity, getItemQuantity } from './car
 import { showView, initRouter } from './router.js';
 import { renderSingleProduct, initProductView } from './product.js';
 import { renderCartView, initShippingListeners } from './view/cartView.js';
+import { initBrowse } from './browse.js';
 
 
 // Initialising Cart
@@ -24,6 +25,9 @@ initProductView((productId) => {
 // Products fetch
 const products = await getProducts();
 console.log(products);
+
+//browse
+initBrowse(products);
 
 // Single product
 document.addEventListener("click", (e) => {
