@@ -2,26 +2,82 @@ import { createProductCard } from "./components.js";
 
 let allProducts = [];
 
-let ratingFilter = [];
+// Intial browse state
+let filters = {
+    name: "",
+    categories: [],
+    ratings: [],
+    priceUnder: null,
+    priceOver: null
+};
+let sort = "name";
 
-function filterByRating(products) {
-
-    if (ratingFilter.length === 0) {
-        return products;
+function matchesFilters(product) {
+    if (filters.name !== "") {
+        const title = product.title.toLowerCase();
+        if (!title.includes(filters.name.toLowerCase())) {
+            return false;
+        }
     }
 
+    if (filters.categories.length > 0 && !filters.categories.includes(product.category)) {
+        return false;
+    }
+
+    if (filters.ratings.length > 0 && !filters.ratings.includes(Math.round(product.rating))) {
+        return false;
+    }
+
+    if (filters.priceUnder !== null && product.price >= filters.priceUnder) {
+        return false;
+    }
+
+    if (filters.priceOver !== null && product.price <= filters.priceOver) {
+        return false;
+    }
+
+    return true;
+}
+
+function applyFilters(products) {
     const results = [];
     for (const product of products) {
-        const stars = Math.round(product.rating);
-        if (ratingFilter.includes(stars)) {
+        if (matchesFilters(product)) {
             results.push(product);
         }
     }
     return results;
 }
 
-export function renderBrowse(products) {
-    const results = filterByRating(products);
+function applySort(products) {
+    const sorted = [...products];
+
+    if (sort === "name") {
+        sorted.sort((a, b) => a.title.localeCompare(b.title)); // Citation: https://www.w3schools.com/jsref/jsref_localecompare.asp
+    } else if (sort === "price") {
+        sorted.sort((a, b) => a.price - b.price);
+    } else if (sort === "rating") {
+        sorted.sort((a, b) => b.rating - a.rating);
+    } else if (sort === "category") {
+        sorted.sort((a, b) => a.category.localeCompare(b.category));
+    }
+
+    return sorted;
+}
+
+// toggles a value in one of the array filters (categories, ratings)
+function toggleFilterValue(key, value, checked) {
+    if (checked) {
+        if (!filters[key].includes(value)) {
+            filters[key].push(value);
+        }
+    } else {
+        filters[key] = filters[key].filter((v) => v !== value);
+    }
+}
+
+export function renderBrowse(products = allProducts) {
+    const results = applySort(applyFilters(products));
 
     const grid = document.querySelector("#results-grid");
     grid.innerHTML = "";
@@ -44,21 +100,15 @@ export function renderBrowse(products) {
 export function initBrowse(products) {
     allProducts = products;
 
+    const nameInput = document.querySelector("#filter-name");
+    nameInput.addEventListener("input", (e) => {
+        filters.name = e.target.value.trim();
+        renderBrowse();
+    });
+
     const ratingBox = document.querySelector("#filter-ratings");
     ratingBox.addEventListener("change", (e) => {
-        const stars = Number(e.target.value);
-
-        if (e.target.checked) {
-            ratingFilter.push(stars);
-        } else {
-            const remaining = [];
-            for (const r of ratingFilter) {
-                if (r !== stars) {
-                    remaining.push(r);
-                }
-            }
-            ratingFilter = remaining;
-        }
-        renderBrowse(allProducts);
+        toggleFilterValue("ratings", Number(e.target.value), e.target.checked);
+        renderBrowse();
     });
 }
