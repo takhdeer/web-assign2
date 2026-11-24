@@ -77,11 +77,32 @@
                         <label class="flex items-center gap-2"><input type="checkbox" value="2"> <span class="text-amber-500">★★<span class="text-stone-300">★★★</span></span></label>
                         <label class="flex items-center gap-2"><input type="checkbox" value="1"> <span class="text-amber-500">★<span class="text-stone-300">★★★★</span></span></label>
                     </div>
-                            
 
+                    <p class="mt-6 mb-2 block font-semibold">Category</p>
+
+                    <div id="filter-categories" class="space-y-2"></div>
+
+                    <p class="mt-6 mb-2 block font-semibold">Price</p>
+                    <div class="flex items-center gap-2">
+                        <input id="filter-price-over" type="number" min="0" step="0.01" placeholder="Min" aria-label="Minimum price" class="w-full border border-stone-300 px-3 py-2 text-sm rounded-lg">
+                        <span class="text-stone-500">–</span>
+                        <input id="filter-price-under" type="number" min="0" step="0.01" placeholder="Max" aria-label="Maximum price" class="w-full border border-stone-300 px-3 py-2 text-sm rounded-lg">
+                    </div>
+
+                    <button id="clear-filters" type="button" class="mt-6 mb-1 w-full rounded-lg border border-stone-300 px-3 py-2 text-sm hover:bg-stone-100 cursor-pointer">Clear filters</button>
                     </section>
-                
+
                 <section>
+                    <div class="mb-4 flex items-center justify-end gap-2 text-sm">
+                        <label for="sort-select" class="font-semibold">Sort by</label>
+                        <select id="sort-select" class="border border-stone-300 px-3 py-2 rounded-lg bg-white">
+                            <option value="name">Name (A–Z)</option>
+                            <option value="price">Price (low to high)</option>
+                            <option value="rating">Rating (high to low)</option>
+                            <option value="category">Category</option>
+                        </select>
+                    </div>
+
                     <div id="results-grid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3"></div>
                     
                     <p id="no-results" class="hidden p-10 text-center text-stone-500">No products found.</p>

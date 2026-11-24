@@ -111,4 +111,67 @@ export function initBrowse(products) {
         toggleFilterValue("ratings", Number(e.target.value), e.target.checked);
         renderBrowse();
     });
+
+    // build one checkbox per category found in the data
+    const categoryBox = document.querySelector("#filter-categories");
+    const categories = [];
+    for (const product of products) {
+        if (!categories.includes(product.category)) {
+            categories.push(product.category);
+        }
+    }
+    categories.sort();
+
+    for (const category of categories) {
+        const label = document.createElement("label");
+        label.className = "flex items-center gap-2 capitalize";
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = category;
+
+        label.appendChild(checkbox);
+        label.append(" " + category.replaceAll("-", " "));
+        categoryBox.appendChild(label);
+    }
+
+    categoryBox.addEventListener("change", (e) => {
+        toggleFilterValue("categories", e.target.value, e.target.checked);
+        renderBrowse();
+    });
+
+    // price inputs: empty box means no limit
+    const priceOverInput = document.querySelector("#filter-price-over");
+    const priceUnderInput = document.querySelector("#filter-price-under");
+
+    priceOverInput.addEventListener("input", (e) => {
+        filters.priceOver = e.target.value === "" ? null : Number(e.target.value);
+        renderBrowse();
+    });
+
+    priceUnderInput.addEventListener("input", (e) => {
+        filters.priceUnder = e.target.value === "" ? null : Number(e.target.value);
+        renderBrowse();
+    });
+
+    const sortSelect = document.querySelector("#sort-select");
+    sortSelect.addEventListener("change", (e) => {
+        sort = e.target.value;
+        renderBrowse();
+    });
+
+    // reset everything back to the initial state
+    document.querySelector("#clear-filters").addEventListener("click", () => {
+        filters = { name: "", categories: [], ratings: [], priceUnder: null, priceOver: null };
+        sort = "name";
+
+        nameInput.value = "";
+        priceOverInput.value = "";
+        priceUnderInput.value = "";
+        sortSelect.value = "name";
+        for (const box of document.querySelectorAll("#filters input[type=checkbox]")) {
+            box.checked = false;
+        }
+        renderBrowse();
+    });
 }
