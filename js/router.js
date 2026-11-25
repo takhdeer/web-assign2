@@ -1,3 +1,4 @@
+import { renderBrowse } from "./browse.js";
 import { renderCartView } from "./view/cartView.js";
 
 const viewIDs = {
@@ -39,6 +40,10 @@ export function initRouter(products) {
             showView(viewName);
             renderCartView(products);
             return;
+        }
+
+        if (viewName === "browse") {
+            renderBrowse(products);
         }
 
         e.preventDefault();

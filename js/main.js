@@ -4,6 +4,8 @@ import { addToCart, getCartCount, decreaseQuanity, getItemQuantity } from './car
 import { showView, initRouter } from './router.js';
 import { renderSingleProduct, initProductView } from './product.js';
 import { renderCartView, initShippingListeners } from './view/cartView.js';
+import { initBrowse } from './browse.js';
+import { showToast } from './toast.js';
 
 
 // Initialising Cart
@@ -24,6 +26,9 @@ initProductView((productId) => {
 // Products fetch
 const products = await getProducts();
 console.log(products);
+
+//browse
+initBrowse(products);
 
 // Single product
 document.addEventListener("click", (e) => {
@@ -91,8 +96,10 @@ main.addEventListener('click', (e) => {
 
     if (addBtn) {
         addToCart(btn.dataset.id);
+        showToast("Added to cart");
     } else {
         decreaseQuanity(btn.dataset.id);
+        showToast("Removed from cart");
     }
     updateCartCount();
     updateRemoveButtons(btn.dataset.id);
