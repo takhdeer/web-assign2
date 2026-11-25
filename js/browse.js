@@ -76,6 +76,71 @@ function toggleFilterValue(key, value, checked) {
     }
 }
 
+// builds the list of chips for every filter that is currently active
+function getActiveFilterChips() {
+    const chips = [];
+
+    if (filters.name !== "") {
+        chips.push({ key: "name", value: "", label: 'Name: "' + filters.name + '"' });
+    }
+    for (const rating of filters.ratings) {
+        chips.push({ key: "ratings", value: String(rating), label: rating + "★" });
+    }
+    for (const category of filters.categories) {
+        chips.push({ key: "categories", value: category, label: category.replaceAll("-", " ") });
+    }
+    if (filters.priceOver !== null) {
+        chips.push({ key: "priceOver", value: "", label: "Min $" + filters.priceOver });
+    }
+    if (filters.priceUnder !== null) {
+        chips.push({ key: "priceUnder", value: "", label: "Max $" + filters.priceUnder });
+    }
+
+    return chips;
+}
+
+function renderActiveFilters() {
+    const container = document.querySelector("#active-filters");
+    container.innerHTML = "";
+
+    for (const chip of getActiveFilterChips()) {
+        const tag = document.createElement("span");
+        tag.className = "flex items-center gap-1 rounded-full border border-brand-200 bg-brand-50 py-1 pl-3 pr-1 text-brand-800 capitalize";
+        tag.textContent = chip.label;
+
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "remove-filter flex h-5 w-5 items-center justify-center rounded-full text-brand-700 hover:bg-brand-100 cursor-pointer";
+        remove.dataset.key = chip.key;
+        remove.dataset.value = chip.value;
+        remove.setAttribute("aria-label", "Remove filter " + chip.label);
+        remove.innerHTML = "&times;";
+
+        tag.appendChild(remove);
+        container.appendChild(tag);
+    }
+}
+
+// removes a single filter and unchecks/clears the matching sidebar input
+function removeFilter(key, value) {
+    if (key === "name") {
+        filters.name = "";
+        document.querySelector("#filter-name").value = "";
+    } else if (key === "priceOver") {
+        filters.priceOver = null;
+        document.querySelector("#filter-price-over").value = "";
+    } else if (key === "priceUnder") {
+        filters.priceUnder = null;
+        document.querySelector("#filter-price-under").value = "";
+    } else if (key === "ratings") {
+        toggleFilterValue("ratings", Number(value), false);
+        document.querySelector('#filter-ratings input[value="' + value + '"]').checked = false;
+    } else if (key === "categories") {
+        toggleFilterValue("categories", value, false);
+        document.querySelector('#filter-categories input[value="' + value + '"]').checked = false;
+    }
+}
+
 export function renderBrowse(products = allProducts) {
     const results = applySort(applyFilters(products));
 
@@ -95,6 +160,8 @@ export function renderBrowse(products = allProducts) {
     } else {
         noResults.classList.add("hidden");
     }
+
+    renderActiveFilters();
 }
 
 export function initBrowse(products) {
@@ -157,6 +224,16 @@ export function initBrowse(products) {
     const sortSelect = document.querySelector("#sort-select");
     sortSelect.addEventListener("change", (e) => {
         sort = e.target.value;
+        renderBrowse();
+    });
+
+    // remove filter
+    document.querySelector("#active-filters").addEventListener("click", (e) => {
+        const button = e.target.closest(".remove-filter");
+        if (!button) {
+            return;
+        }
+        removeFilter(button.dataset.key, button.dataset.value);
         renderBrowse();
     });
 

@@ -66,41 +66,63 @@
                 
                 <!-- filters -->
                 <section id="filters" class="h-fit rounded-2xl border bg-white text-sm border-stone-200 px-3 py-2">
-                    <label for="filter-name" class="mb-2 block font-semibold">Product Name</label>
-                    <input id="filter-name" type="search" placeholder="Search products" class="w-full border border-stone-300 px-3 py-2 text-sm rounded-lg">
+                    <!-- Citation: https://www.w3schools.com/tags/tag_details.asp -->
+                    <details open class="group border-b border-stone-200 py-1">
+                        <summary class="flex cursor-pointer list-none items-center justify-between py-2 font-semibold [&::-webkit-details-marker]:hidden">Product Name <span class="text-stone-400 transition-transform group-open:rotate-180">&#9662;</span></summary>
+                        <div class="pb-3 pt-1">
+                            <!-- Citation: https://www.w3schools.com/accessibility/accessibility_labels.php-->
+                            <input id="filter-name" type="search" placeholder="Search products" aria-label="Product name" class="w-full border border-stone-300 px-3 py-2 text-sm rounded-lg">
+                        </div>
+                    </details>
 
-                    <p class="mt-6 mb-2 block font-semibold">Rating</p>
-                    <div id="filter-ratings" class="space-y-2">
-                        <label class="flex items-center gap-2"><input type="checkbox" value="5"> <span class="text-amber-500">★★★★★</span></label>
-                        <label class="flex items-center gap-2"><input type="checkbox" value="4"> <span class="text-amber-500">★★★★<span class="text-stone-300">★</span></span></label>
-                        <label class="flex items-center gap-2"><input type="checkbox" value="3"> <span class="text-amber-500">★★★<span class="text-stone-300">★★</span></span></label>
-                        <label class="flex items-center gap-2"><input type="checkbox" value="2"> <span class="text-amber-500">★★<span class="text-stone-300">★★★</span></span></label>
-                        <label class="flex items-center gap-2"><input type="checkbox" value="1"> <span class="text-amber-500">★<span class="text-stone-300">★★★★</span></span></label>
-                    </div>
+                    <details open class="group border-b border-stone-200 py-1">
+                        <summary class="flex cursor-pointer list-none items-center justify-between py-2 font-semibold [&::-webkit-details-marker]:hidden">Rating <span class="text-stone-400 transition-transform group-open:rotate-180">&#9662;</span></summary>
+                        <div class="pb-3 pt-1">
+                            <div id="filter-ratings" class="space-y-2">
+                                <label class="flex items-center gap-2"><input type="checkbox" value="5"> <span class="text-amber-500">★★★★★</span></label>
+                                <label class="flex items-center gap-2"><input type="checkbox" value="4"> <span class="text-amber-500">★★★★<span class="text-stone-300">★</span></span></label>
+                                <label class="flex items-center gap-2"><input type="checkbox" value="3"> <span class="text-amber-500">★★★<span class="text-stone-300">★★</span></span></label>
+                                <label class="flex items-center gap-2"><input type="checkbox" value="2"> <span class="text-amber-500">★★<span class="text-stone-300">★★★</span></span></label>
+                                <label class="flex items-center gap-2"><input type="checkbox" value="1"> <span class="text-amber-500">★<span class="text-stone-300">★★★★</span></span></label>
+                            </div>
+                        </div>
+                    </details>
 
-                    <p class="mt-6 mb-2 block font-semibold">Category</p>
+                    <details open class="group border-b border-stone-200 py-1">
+                        <summary class="flex cursor-pointer list-none items-center justify-between py-2 font-semibold [&::-webkit-details-marker]:hidden">Category <span class="text-stone-400 transition-transform group-open:rotate-180">&#9662;</span></summary>
+                        <div class="pb-3 pt-1">
+                            <div id="filter-categories" class="space-y-2"></div>
+                        </div>
+                    </details>
 
-                    <div id="filter-categories" class="space-y-2"></div>
-
-                    <p class="mt-6 mb-2 block font-semibold">Price</p>
-                    <div class="flex items-center gap-2">
-                        <input id="filter-price-over" type="number" min="0" step="0.01" placeholder="Min" aria-label="Minimum price" class="w-full border border-stone-300 px-3 py-2 text-sm rounded-lg">
-                        <span class="text-stone-500">–</span>
-                        <input id="filter-price-under" type="number" min="0" step="0.01" placeholder="Max" aria-label="Maximum price" class="w-full border border-stone-300 px-3 py-2 text-sm rounded-lg">
-                    </div>
+                    <details open class="group border-b border-stone-200 py-1">
+                        <summary class="flex cursor-pointer list-none items-center justify-between py-2 font-semibold [&::-webkit-details-marker]:hidden">Price <span class="text-stone-400 transition-transform group-open:rotate-180">&#9662;</span></summary>
+                        <div class="pb-3 pt-1">
+                            <div class="flex items-center gap-2">
+                                <input id="filter-price-over" type="number" min="0" step="0.01" placeholder="Min" aria-label="Minimum price" class="w-full border border-stone-300 px-3 py-2 text-sm rounded-lg">
+                                <span class="text-stone-500">–</span>
+                                <input id="filter-price-under" type="number" min="0" step="0.01" placeholder="Max" aria-label="Maximum price" class="w-full border border-stone-300 px-3 py-2 text-sm rounded-lg">
+                            </div>
+                        </div>
+                    </details>
 
                     <button id="clear-filters" type="button" class="mt-6 mb-1 w-full rounded-lg border border-stone-300 px-3 py-2 text-sm hover:bg-stone-100 cursor-pointer">Clear filters</button>
                     </section>
 
                 <section>
-                    <div class="mb-4 flex items-center justify-end gap-2 text-sm">
-                        <label for="sort-select" class="font-semibold">Sort by</label>
-                        <select id="sort-select" class="border border-stone-300 px-3 py-2 rounded-lg bg-white">
-                            <option value="name">Name (A–Z)</option>
-                            <option value="price">Price (low to high)</option>
-                            <option value="rating">Rating (high to low)</option>
-                            <option value="category">Category</option>
-                        </select>
+                    <div class="mb-4 flex flex-wrap items-center justify-between gap-3 text-sm">
+                        <!-- active filter chips (filled by renderActiveFilters in js/browse.js) -->
+                        <div id="active-filters" class="flex flex-wrap items-center gap-2"></div>
+
+                        <div class="ml-auto flex items-center gap-2">
+                            <label class="font-semibold">Sort by</label>
+                            <select id="sort-select" class="border border-stone-300 px-3 py-2 rounded-lg bg-white">
+                                <option value="name">Name (A–Z)</option>
+                                <option value="price">Price (low to high)</option>
+                                <option value="rating">Rating (high to low)</option>
+                                <option value="category">Category</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div id="results-grid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3"></div>
