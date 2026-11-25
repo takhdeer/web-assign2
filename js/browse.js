@@ -76,6 +76,41 @@ function toggleFilterValue(key, value, checked) {
     }
 }
 
+function resetFilters() {
+    filters = { name: "",
+                categories: [],
+                ratings: [],
+                priceUnder: null,
+                priceOver: null
+    };
+    sort = "name";
+
+    document.querySelector("#filter-name").value = "";
+    document.querySelector("#filter-price-over").value = "";
+    document.querySelector("#filter-price-under").value = "";
+    document.querySelector("#sort-select").value = "name";
+
+    const checked = document.querySelectorAll("#filters input[type=checkbox]");
+
+    for (const box of checked) {
+        box.checked = false;
+    }
+}
+
+export function showCategory(category) {
+    resetFilters();
+    filters.categories = [category];
+    const checkbox = document.querySelectorAll("#filters input[type=checkbox]");
+    
+    for (const box of checkbox) {
+        if (box.value === category) {
+            box.checked = true;
+        }
+    }
+
+    renderBrowse();
+}
+
 export function renderBrowse(products = allProducts) {
     const results = applySort(applyFilters(products));
 

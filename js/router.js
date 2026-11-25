@@ -1,4 +1,4 @@
-import { renderBrowse } from "./browse.js";
+import { renderBrowse, showCategory } from "./browse.js";
 import { renderCartView } from "./view/cartView.js";
 
 const viewIDs = {
@@ -43,7 +43,12 @@ export function initRouter(products) {
         }
 
         if (viewName === "browse") {
-            renderBrowse(products);
+            const category = e.target.dataset.category;
+            if (category !== undefined) {
+                showCategory(category);
+            } else {
+                renderBrowse(products);
+            }
         }
 
         e.preventDefault();
