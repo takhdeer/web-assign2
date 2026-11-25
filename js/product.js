@@ -1,5 +1,6 @@
 import { createStarRating } from "./components.js";
 import { addToCart } from "./cart.js";
+import { showToast } from "./toast.js";
 
 
 function renderInfo(product) {
@@ -153,6 +154,7 @@ export function initProductView(onCartChange) {
 
         const productID = addButton.dataset.id;
         addToCart(productID, quantity);
+        showToast(`Added ${quantity} to cart`);
         onCartChange(productID);
     });
 

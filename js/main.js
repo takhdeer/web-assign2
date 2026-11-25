@@ -5,6 +5,7 @@ import { showView, initRouter } from './router.js';
 import { renderSingleProduct, initProductView } from './product.js';
 import { renderCartView, initShippingListeners } from './view/cartView.js';
 import { initBrowse } from './browse.js';
+import { showToast } from './toast.js';
 
 
 // Initialising Cart
@@ -95,8 +96,10 @@ main.addEventListener('click', (e) => {
 
     if (addBtn) {
         addToCart(btn.dataset.id);
+        showToast("Added to cart");
     } else {
         decreaseQuanity(btn.dataset.id);
+        showToast("Removed from cart");
     }
     updateCartCount();
     updateRemoveButtons(btn.dataset.id);
