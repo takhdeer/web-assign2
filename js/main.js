@@ -6,6 +6,7 @@ import { renderSingleProduct, initProductView } from './product.js';
 import { renderCartView, initShippingListeners } from './view/cartView.js';
 import { initBrowse } from './browse.js';
 import { showToast } from './toast.js';
+import { renderCategory } from './category.js';
 
 
 // Initialising Cart
@@ -29,6 +30,9 @@ console.log(products);
 
 //browse
 initBrowse(products);
+
+// category view
+renderCategory(products);
 
 // Single product
 document.addEventListener("click", (e) => {
@@ -64,10 +68,6 @@ for (const p of products) {
         featuredCount += 1;
     }
 }
-// for (let i = 0 ; i < 4 ; i++) {
-//     const card = createProductCard(products[i]);
-//     featuredGrid.appendChild(card);
-// }
 
 
 const aboutButton = document.querySelector("#about-open");
