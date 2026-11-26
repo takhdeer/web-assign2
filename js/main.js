@@ -1,6 +1,6 @@
 import { getProducts } from './data.js';
 import { createProductCard } from './components.js';
-import { addToCart, getCartCount, decreaseQuanity, getItemQuantity } from './cart.js';
+import { addToCart, getCartCount, decreaseQuanity, getItemQuantity, clearCart } from './cart.js';
 import { showView, initRouter } from './router.js';
 import { renderSingleProduct, initProductView } from './product.js';
 import { renderCartView, initShippingListeners } from './view/cartView.js';
@@ -74,6 +74,20 @@ const aboutButton = document.querySelector("#about-open");
 const aboutDialog = document.querySelector("#about");
 aboutButton.addEventListener("click", () => {
     aboutDialog.showModal();
+});
+
+// checkout functionality
+const checkoutBtn = document.querySelector('#checkout');
+checkoutBtn.addEventListener('click', () => {
+    if (getCartCount() === 0) {
+        showToast('Your Cart is empty', 'error');
+        return
+    }
+    clearCart();
+    updateCartCount();
+    renderCartView();
+    showToast('Order Placed, Thank you for Shoping!');
+    showView('home');
 });
 
 // Main document functionality

@@ -56,3 +56,7 @@ export function getCartCount() {
     })
     return items;
 }
+
+export function clearCart() {
+    localStorage.removeItem(CART_KEY);
+}
