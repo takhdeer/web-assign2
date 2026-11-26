@@ -45,6 +45,7 @@
     --text-3xl--line-height: calc(2.25 / 1.875);
     --text-4xl: 2.25rem;
     --text-4xl--line-height: calc(2.5 / 2.25);
+    --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
@@ -64,6 +65,8 @@
     --color-brand-600: #23775b;
     --color-brand-700: #1c5f49;
     --color-brand-800: #164b3a;
+    --color-cream: #f5efe6;
+    --color-brown: #8B4512;
   }
 }
 @layer base {
@@ -278,6 +281,9 @@
   .mx-auto {
     margin-inline: auto;
   }
+  .my-8 {
+    margin-block: calc(var(--spacing) * 8);
+  }
   .mt-1 {
     margin-top: var(--spacing);
   }
@@ -295,9 +301,6 @@
   }
   .mt-10 {
     margin-top: calc(var(--spacing) * 10);
-  }
-  .mt-12 {
-    margin-top: calc(var(--spacing) * 12);
   }
   .mb-1 {
     margin-bottom: var(--spacing);
@@ -506,6 +509,9 @@
   .border-brand-200 {
     border-color: var(--color-brand-200);
   }
+  .border-brown {
+    border-color: var(--color-brown);
+  }
   .border-gray-200 {
     border-color: var(--color-gray-200);
   }
@@ -521,6 +527,12 @@
   .bg-brand-600 {
     background-color: var(--color-brand-600);
   }
+  .bg-brown {
+    background-color: var(--color-brown);
+  }
+  .bg-cream {
+    background-color: var(--color-cream);
+  }
   .bg-gray-100 {
     background-color: var(--color-gray-100);
   }
@@ -530,9 +542,6 @@
   .bg-red-600 {
     background-color: var(--color-red-600);
   }
-  .bg-stone-50 {
-    background-color: var(--color-stone-50);
-  }
   .bg-stone-100 {
     background-color: var(--color-stone-100);
   }
@@ -541,12 +550,6 @@
   }
   .bg-white {
     background-color: var(--color-white);
-  }
-  .bg-white\/90 {
-    background-color: color-mix(in srgb, #fff 90%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-white) 90%, transparent);
-    }
   }
   .object-contain {
     object-fit: contain;
@@ -601,6 +604,12 @@
   }
   .py-8 {
     padding-block: calc(var(--spacing) * 8);
+  }
+  .py-10 {
+    padding-block: calc(var(--spacing) * 10);
+  }
+  .py-12 {
+    padding-block: calc(var(--spacing) * 12);
   }
   .py-16 {
     padding-block: calc(var(--spacing) * 16);
@@ -666,6 +675,10 @@
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
   }
+  .font-normal {
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+  }
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
@@ -682,6 +695,9 @@
   }
   .text-brand-800 {
     color: var(--color-brand-800);
+  }
+  .text-cream {
+    color: var(--color-cream);
   }
   .text-gray-500 {
     color: var(--color-gray-500);
@@ -764,14 +780,28 @@
     .hover\:bg-brand-700:hover {
       background-color: var(--color-brand-700);
     }
+    .hover\:bg-orange-800:hover {
+      background-color: var(--color-orange-800);
+    }
     .hover\:bg-stone-100:hover {
       background-color: var(--color-stone-100);
     }
     .hover\:bg-stone-700:hover {
       background-color: var(--color-stone-700);
     }
+    .hover\:bg-white\/15:hover {
+      background-color: color-mix(in srgb, #fff 15%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:bg-white\/15:hover {
+        background-color: color-mix(in oklab, var(--color-white) 15%, transparent);
+      }
+    }
     .hover\:text-brand-600:hover {
       color: var(--color-brand-600);
+    }
+    .hover\:text-white:hover {
+      color: var(--color-white);
     }
     .hover\:underline:hover {
       text-decoration-line: underline;
@@ -848,15 +878,18 @@
     border-radius: calc(infinity * 1px);
     padding-inline: calc(var(--spacing) * 3);
     padding-block: calc(var(--spacing) * 1.5);
-    color: var(--color-stone-600);
+    color: var(--color-cream);
     &:hover {
       @media (hover: hover) {
-        background-color: var(--color-stone-100);
+        background-color: color-mix(in srgb, #fff 15%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-white) 15%, transparent);
+        }
       }
     }
     &:hover {
       @media (hover: hover) {
-        color: var(--color-stone-900);
+        color: var(--color-white);
       }
     }
   }

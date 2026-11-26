@@ -48,13 +48,13 @@ document.addEventListener("click", (e) => {
         }
     }
 });
+
 // Router: Start on home view
 initRouter(products);
 initShippingListeners(products);
 showView("home");
 
 // Featured Grid 
-
 const featuredGrid = document.querySelector("#featured-grid");
 const featuredMax = 4;
 let featuredCount = 0;

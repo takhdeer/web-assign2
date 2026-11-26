@@ -10,11 +10,11 @@
     </head>
 
 
-    <body class="flex min-h-screen flex-col bg-stone-50 text-stone-800">
+    <body class="flex min-h-screen flex-col bg-cream text-stone-800">
 
-        <header class="sticky top-0 z-40 border-b border-stone-200 bg-white/90 ">
+        <header class="sticky top-0 z-40 border-b border-brown bg-brown">
             <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
-                <a href="#" data-view="home" class="text-2xl font-extrabold tracking-tight text-brand-700">
+                <a href="#" data-view="home" class="text-2xl font-extrabold tracking-tight text-white">
                     (Logo)
                 </a>
                 
@@ -25,9 +25,9 @@
                     <li><button type="button" id="about-open" class="nav-link">About</button></li>
                 </ul>
                 
-                <a href="#" data-view="cart" class="relative flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-semibold text-stone-800 hover:bg-stone-100">
+                <a href="#" data-view="cart" class="relative flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-semibold text-white hover:bg-white/15">
                     Cart
-                    <span id="cart-count" class="hidden font-semibold text-brand-700"></span>
+                    <span id="cart-count" class="hidden font-semibold text-cream"></span>
                 </a>
             </nav>
         </header>
@@ -41,8 +41,15 @@
 
             </section>
 
-            <section class="mt-12">
-                <h2 class="mb-6 text-2xl font-bold">Featured Products</h2>
+            <section id="intro" class="rounded-3xl bg-orange-700 px-8 py-12 text-center font-bold text-white">
+                <h1 class="mb-6 text-4xl">Get Randy's Aura</h1>
+                <p>Shop All these items, handpicked by Randy and maybe you'll be as cool as him.</p>
+            </section>
+
+            <button data-view="browse" ="shop-now-btn" class="mx-auto my-8 block rounded-full bg-orange-700 px-8 py-3 text-lg font-normal text-white hover:bg-orange-800">Shop Now</button>
+
+            <section id='fatured-section'>
+                <h2 class="mb-6 text-4xl font-bold rounded-3xl bg-orange-700 px-8 py-10 text-white">Featured Products</h2>
                 <div id="featured-grid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"></div>
             </section>
             
@@ -238,13 +245,13 @@
 
     </main>
 
-    <footer class="border-t border-stone-200 bg-white">
-        <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 text-sm text-stone-500 sm:flex-row sm:items-center sm:justify-between">
+    <footer class="border-t border-brown bg-brown">
+        <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 text-sm text-cream sm:flex-row sm:items-center sm:justify-between">
             <p>&copy;2026 COMP 3612 Assignment 2</p>
             <ul class="flex gap-4">
-                <li><a href="https://github.com/takhdeer/web-assign2">Assignment Github repo</a></li>
-                <li><a href="https://github.com/takhdeer">Takhdeer's Github</a></li>
-                <li><a href="https://github.com/AaronArrieta">Aaron's Github</a></li>
+                <li><a href="https://github.com/takhdeer/web-assign2" class="hover:text-white hover:underline">Assignment Github repo</a></li>
+                <li><a href="https://github.com/takhdeer" class="hover:text-white hover:underline">Takhdeer's Github</a></li>
+                <li><a href="https://github.com/AaronArrieta" class="hover:text-white hover:underline">Aaron's Github</a></li>
             </ul>
         </div>
 
