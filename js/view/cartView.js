@@ -95,7 +95,19 @@ function renderCartSummary(products) {
     const tax = calculateTax(merchandise, destination);
 
     document.querySelector('#summary-merchandise').textContent = formatMoney(merchandise);
-    document.querySelector('#summary-shipping').textContent = formatMoney(shipping);
+    // free shipping: strike through the normal cost and show the note
+    const shippingCell = document.querySelector('#summary-shipping');
+    const isFreeShipping = merchandise > FREE_SHIPPING_THRESHOLD;
+    shippingCell.textContent = "";
+    if (isFreeShipping) {
+        const original = document.createElement('s');
+        original.className = "mr-2 text-stone-500";
+        original.textContent = formatMoney(SHIPPING_COSTS[type][destination]);
+        shippingCell.appendChild(original);
+    }
+    shippingCell.append(formatMoney(shipping));
+    document.querySelector('#free-shipping-note').classList.toggle('hidden', !isFreeShipping);
+
     document.querySelector('#summary-tax').textContent = formatMoney(tax);
     document.querySelector('#summary-total').textContent = formatMoney(merchandise + shipping + tax);
 }
