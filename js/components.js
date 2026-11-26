@@ -9,8 +9,7 @@ function createParagraph(className, text) {
 
 export function createProductLink(product, className) {
     const link = document.createElement("a");
-    link.href = "#";
-    link.className = className;
+    link.className = `${className} hover:cursor-pointer`;
     link.dataset.view = "product";
     link.dataset.id = product.id;
     return link;
@@ -19,7 +18,7 @@ export function createProductLink(product, className) {
 export function createAddButton(product) {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-600 text-lg text-white hover:bg-brand-700";
+    button.className = "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-orange-700 text-lg text-white hover:bg-brand-700";
     button.dataset.id = product.id;
     button.setAttribute("aria-label", "Add to cart");
     button.textContent = "+";
