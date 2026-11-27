@@ -7,25 +7,26 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:wght@400;700;800&display=swap" rel="stylesheet">
     </head>
 
 
-    <body class="flex min-h-screen flex-col bg-cream text-stone-800">
+    <body class="flex min-h-screen flex-col overflow-x-clip bg-cream text-stone-800">
 
-        <header class="sticky top-0 z-40 border-b border-brown bg-brown">
+        <header class="sticky top-0 z-40 bg-teal-950 w-screen">
             <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
                 <a data-view="home" class="block shrink-0 hover:cursor-pointer">
-                    <img src="logo.svg" alt="Home" class="pointer-events-none h-12 w-12 object-contain">
+                    <img src="../web-assign2/images/logo.svg" alt="Home" class="pointer-events-none h-12 w-12 object-contain">
                 </a>
                 
                 <ul class="flex items-center gap-1 text-sm font-medium sm:gap-4">
-                    <li><a href="#" data-view="home" class="nav-link">Home</a></li>
-                    <li><a href="#" data-view="browse" class="nav-link">Browse</a></li>
-                    <li><a href="#" data-view="category" class="nav-link">Category</a></li>
-                    <li><button type="button" id="about-open" class="nav-link">About</button></li>
+                    <li><a  data-view="home" class="nav-link cursor-pointer">Home</a></li>
+                    <li><a  data-view="browse" class="nav-link cursor-pointer">Browse</a></li>
+                    <li><a  data-view="category" class="nav-link cursor-pointer">Category</a></li>
+                    <li><button type="button" id="about-open" class="nav-link cursor-pointer">About</button></li>
                 </ul>
                 
-                <a href="#" data-view="cart" class="relative flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-semibold text-white hover:bg-white/15">
+                <a  data-view="cart" class="relative flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-semibold text-white hover:bg-white/15">
                     Cart
                     <span id="cart-count" class="hidden font-semibold text-cream"></span>
                 </a>
@@ -36,20 +37,15 @@
 
         <!-- home view -->
         <article id="home" class="view">
-            <section class="relative overflow-hidden rounded-3xl">
-                <!-- (Home) -->
-
-            </section>
-
-            <section id="intro" class="rounded-3xl bg-orange-700 px-8 py-12 text-center font-bold text-white">
-                <h1 class="mb-6 text-4xl">Get Randy's Aura</h1>
+            <section id="intro" class="font-['Ancizar_Serif',serif] relative left-1/2 -mt-8 w-screen -translate-x-1/2 bg-[linear-gradient(rgba(0,0,0,0.5)),url('../images/hero-bg.png')] bg-cover bg-center px-8 py-40 text-center font-bold text-white">
+                <h1 class="mb-6 text-6xl">Get Randy's Aura</h1>
                 <p>Shop All these items, handpicked by Randy and maybe you'll be as cool as him.</p>
+                <button data-view="browse" ="shop-now-btn" class="mt-15 mx-auto my-8 block rounded-[0.6vw] bg-orange-700 px-8 py-3 text-lg font-normal text-white hover:bg-orange-800 cursor-pointer font-semibold">Shop Now</button>
             </section>
 
-            <button data-view="browse" ="shop-now-btn" class="mx-auto my-8 block rounded-full bg-orange-700 px-8 py-3 text-lg font-normal text-white hover:bg-orange-800">Shop Now</button>
 
-            <section id='fatured-section'>
-                <h2 class="mb-6 text-4xl font-bold rounded-3xl bg-orange-700 px-8 py-10 text-white">Featured Products</h2>
+            <section id='featured-section' class="mt-12">
+                <h2 class="mb-12 text-4xl font-bold rounded-3xl bg-stone-500 px-8 py-10 text-white">Featured Products</h2>
                 <div id="featured-grid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"></div>
             </section>
             
@@ -151,9 +147,9 @@
 
             <!-- breadcrumb navigation -->
 
-            <nav class="mb-6 text-sm">
-                <a href="#" data-view="home" class="hover:underline">home</a> &gt;
-                <a href="#" id="crumb-category" data-view="browse" class="capitalize hover:underline"></a> &gt;
+            <nav class="mb-8 flex items-center gap-2 text-sm text-orange-800 font-semibold">
+                <a  data-view="home" class="capitalize hover:text-brand-700 hover:underline">home</a> &gt;
+                <a  id="crumb-category" data-view="browse" class="capitalize hover:underline hover:text-brand-700"></a> &gt;
                 <span id="crumb-title"></span>
             </nav>
 
@@ -173,8 +169,8 @@
                     <p id="product-description" class="mt-4"></p>
                     
                     <div class="mt-6 flex items-end gap-4">
-                        <label>Quantity<input id="product-qty" type="number" min="1" value="1" class="block w-20 border p-1"></label>
-                        <button id="product-add" type="button" class="bg-brand-600 px-4 py-2 text-white cursor-pointer">Add to cart</button>
+                        <label class="font-semibold">Quantity<input id="product-qty" type="number" min="1" value="1" class="mt-1 block w-24 border border-stone-200 p-1 rounded-[0.6vw] bg-white"></label>
+                        <button id="product-add" type="button" class="rounded-2xl bg-brand-600 px-4 py-2 text-white cursor-pointer hover:bg-brand-700">Add to cart</button>
                     </div>
                 </div>
             </div>
@@ -183,11 +179,10 @@
             <div class="mt-10">
                 <div id="product-tabs" class="flex gap-2">
                     <!-- Citation: https://www.w3schools.com/tags/att_data-.asp -->
-                    <button type="button" data-tab="specs" class="border px-4 py-2 cursor-pointer">Specifications</button>
-                    <button type="button" data-tab="reviews" class="border px-4 py-2 cursor-pointer">Reviews</button>
+                    <button type="button" data-tab="specs" class="tab-button font-semibold px-4 py-2 cursor-pointer rounded-tl-lg rounded-tr-lg bg-white">Specifications</button>
+                    <button type="button" data-tab="reviews" class="tab-button px-4 font-semibold cursor-pointer rounded-tl-lg rounded-tr-lg bg-stone-200">Reviews</button></div>
                 </div>
-
-                <section id="tab-specs" class="tab-panel border p-4">
+                <section id="tab-specs" class="tab-panel p-4 bg-white rounded-bl-lg rounded-br-lg rounded-tr-lg">
                     <p>Weight: <span id="spec-weight"></span></p>
                     <p>Dimensions: <span id="spec-dimensions"></span></p>
                     <p>Warranty: <span id="spec-warranty"></span></p>
@@ -195,7 +190,7 @@
                     <p>Return policy: <span id="spec-returns"></span></p>
                 </section>
 
-                <section id="tab-reviews" class="tab-panel hidden border p-4">
+                <section id="tab-reviews" class="tab-panel hidden p-4 bg-white rounded-bl-lg rounded-br-lg rounded-tr-lg">
                     <ul id="review-list" class="max-h-96 space-y-4 overflow-y-auto"></ul>
                 </section>
             </div>
@@ -213,13 +208,13 @@
                 <!-- shipping selector -->
                 <div id="cart-shipping" class="rounded-lg border border-gray-200 bg-white p-4">
                     <label id="shipping-label" class="mb-2 block font-medium text-gray-900">Shipping destination</label>
-                    <select id="shipping-destination" class="w-full rounded-lg border border-gray-200 p-2">
+                    <select id="shipping-destination" class="w-full rounded-lg border border-gray-200 p-2 cursor-pointer">
                         <option value="CAN">Canada</option>
                         <option value="US">US</option>
                         <option value="INT">International</option>
                     </select>
                     <label id="shipping-label" class="mb-2 block font-medium text-gray-900">Shipping Type</label>
-                    <select id="shipping-type" class="w-full rounded-lg border border-gray-200 p-2">
+                    <select id="shipping-type" class="w-full rounded-lg border border-gray-200 p-2 cursor-pointer">
                         <option value="STAN">Standard</option>
                         <option value="EXP">Express</option>
                         <option value="PRI">Priority</option>
@@ -237,7 +232,7 @@
                     </dl>
 
                     <div id="checkout" class="mt-6 flex justify-end">
-                        <button type="button" id="checkout-btn" class="w-full rounded-md bg-stone-800 px-6 py-3 text-sm font-medium text-white hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:ring-offset-2 sm:w-auto">Checkout</button>
+                        <button type="button" id="checkout-btn" class="w-full rounded-md bg-stone-800 px-6 py-3 text-sm font-medium text-white hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:ring-offset-2 sm:w-auto cursor-pointer">Checkout</button>
                     </div>
                 </div>
             </div>
@@ -245,7 +240,7 @@
 
     </main>
 
-    <footer class="border-t border-brown bg-brown">
+    <footer class="border-t border-brown bg-neutral-700">
         <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 text-sm text-cream sm:flex-row sm:items-center sm:justify-between">
             <p>&copy;2026 COMP 3612 Assignment 2</p>
             <ul class="flex gap-4">

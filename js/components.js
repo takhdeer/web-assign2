@@ -18,7 +18,7 @@ export function createProductLink(product, className) {
 export function createAddButton(product) {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-orange-700 text-lg text-white hover:bg-brand-700";
+    button.className = "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-600 text-lg text-white hover:bg-brand-700";
     button.dataset.id = product.id;
     button.setAttribute("aria-label", "Add to cart");
     button.textContent = "+";
@@ -30,7 +30,7 @@ export function createRemoveButton(product) {
     const button = document.createElement("button");
     button.type = "button";
     button.hidden = getItemQuantity(String(product.id)) === 0;
-    button.className = "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-600 text-lg text-white hover:bg-brand-700";
+    button.className = "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-red-700 text-lg text-white hover:bg-red-800";
     button.dataset.id = product.id;
     button.setAttribute("aria-label", "Remove from cart");
     button.textContent = "−";
