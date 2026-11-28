@@ -19,4 +19,7 @@
     .nav-link {
         @apply rounded-full px-3 py-1.5 text-cream hover:bg-white/15 hover:text-white;
     }
+    .tech-list {
+        @apply mb-2 inline-block w-fit rounded-full bg-stone-100 px-3 py-1 text-stone-700;
+    }
 }

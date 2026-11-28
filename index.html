@@ -278,8 +278,50 @@
         <form method="dialog" class="relative p-8">
             <button type="submit" aria-label="Close" class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-xl text-stone-500 hover:bg-stone-100">
                 &times;
-            </button>       
-        (About)
+            </button>
+
+            <div class="max-h-[75vh] overflow-y-auto pr-2">
+                <p class="text-xs font-semibold uppercase tracking-widest text-orange-700">About this site</p>
+                <h2 class="mt-1 text-3xl font-bold text-teal-950">COMP 3612 Assignment 2</h2>
+                <p class="mt-4 leading-relaxed text-stone-600">
+                    A SPA storefront built for COMP 3612 as Assignment 2. User's can browse and filter, through
+                    100 products by category, rating, price, and name. They can also view product details, and add items to a cart which persists between visits.
+                    Shipping and totals are calculated at checkout. Order Items is currently under development.  
+                </p>
+
+                <section class="mt-8">
+                    <h3 class="text-sm font-semibold uppercase tracking-wide text-teal-950">Built with</h3>
+                    <ul class="mt-3 text-sm">
+                        <li class="tech-list">HTML5</li>
+                        <li class="tech-list">Tailwind CSS v4</li>
+                        <li class="tech-list">Google Fonts API</li>
+                        <li class="tech-list">Vanilla JavaScript</li>
+                        <li class="tech-list">Products API</li>
+                        <li class="tech-list">localStorage</li>
+                        <li class="tech-list">Node.js (npm/npx)</li>
+                        <li class="tech-list">Git, lazygit & GitHub</li>
+                    </ul>
+                </section>
+
+                <section class="mt-8">
+                    <h3 class="text-sm font-semibold uppercase tracking-wide text-teal-950">Developer's</h3>
+                    <ul class="mt-3 grid gap-3 sm:grid-cols-2">
+                        <li class="rounded-xl border border-stone-200 p-4">
+                            <p class="font-semibold text-stone-800">Takhdeer Grewal</p>
+                            <a href="https://github.com/takhdeer" target="_blank" rel="noopener" class="text-sm text-orange-700 hover:underline">github.com/takhdeer</a>
+                        </li>
+                        <li class="rounded-xl border border-stone-200 p-4">
+                            <p class="font-semibold text-stone-800">Aaron Arrieta</p>
+                            <a href="https://github.com/AaronArrieta" target="_blank" rel="noopener" class="text-sm text-orange-700 hover:underline">github.com/AaronArrieta</a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="mt-8">
+                    <h3 class="text-sm font-semibold uppercase tracking-wide text-teal-950">Source code</h3>
+                    <a href="https://github.com/takhdeer/web-assign2" target="_blank" rel="noopener" class="mt-3 inline-block rounded-md bg-orange-700 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-800">github.com/takhdeer/web-assign2</a>
+                </section>
+            </div>
         </form>
     </dialog>
 
