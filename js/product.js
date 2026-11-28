@@ -40,7 +40,7 @@ function renderTags(product) {
     for (const tag of product.tags) {
         const pill = document.createElement("span");
         pill.textContent = tag;
-        pill.className = "rounded-full bg-stone-100 px-3 text-xs font-medium text-stone-600";
+        pill.className = "rounded-[2vw] bg-stone-100 px-3 text-xs font-medium text-stone-600 border capitalize";
         tagList.appendChild(pill);
     }
 }

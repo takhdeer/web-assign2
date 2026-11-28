@@ -40,12 +40,12 @@
             <section id="intro" class="font-['Ancizar_Serif',serif] relative left-1/2 -mt-8 w-screen -translate-x-1/2 bg-[linear-gradient(rgba(0,0,0,0.5)),url('../images/hero-bg.png')] bg-cover bg-center px-8 py-40 text-center font-bold text-white">
                 <h1 class="mb-6 text-6xl">Get Randy's Aura</h1>
                 <p>Shop All these items, handpicked by Randy and maybe you'll be as cool as him.</p>
-                <button data-view="browse" ="shop-now-btn" class="mt-15 mx-auto my-8 block rounded-[0.6vw] bg-orange-700 px-8 py-3 text-lg font-normal text-white hover:bg-orange-800 cursor-pointer font-semibold">Shop Now</button>
+                <button data-view="browse" id="shop-now-btn" class="mt-15 mx-auto my-8 block rounded-[0.6vw] bg-orange-700 px-8 py-3 text-lg font-normal text-white hover:bg-orange-800 cursor-pointer font-semibold">Shop Now</button>
             </section>
 
 
             <section id='featured-section' class="mt-12">
-                <h2 class="mb-12 text-4xl font-bold rounded-3xl bg-stone-500 px-8 py-10 text-white">Featured Products</h2>
+                <h2 class="mb-12 text-4xl font-bold rounded-3xl bg-orange-700 px-8 py-10 text-white">Featured Products</h2>
                 <div id="featured-grid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"></div>
             </section>
             
@@ -66,7 +66,7 @@
         <!-- browse view -->
         <article id="browse" class="view hidden">
             <h2 class="mb-6 text-2xl font-bold">
-                Browse <span id="result-count" class="text-stone-500"></span>
+                Browse <span id="result-count"></span>
             </h2>
 
             <div class="grid gap-8 lg:grid-cols-[240px_1fr]">
@@ -169,7 +169,7 @@
                     <p id="product-description" class="mt-4"></p>
                     
                     <div class="mt-6 flex items-end gap-4">
-                        <label class="font-semibold">Quantity<input id="product-qty" type="number" min="1" value="1" class="mt-1 block w-24 border border-stone-200 p-1 rounded-[0.6vw] bg-white"></label>
+                        <label class="font-semibold">Quantity<input id="product-qty" type="number" min="1" value="1" class="mt-1 block w-24 border  p-1 rounded-[0.6vw] bg-white"></label>
                         <button id="product-add" type="button" class="rounded-2xl bg-brand-600 px-4 py-2 text-white cursor-pointer hover:bg-brand-700">Add to cart</button>
                     </div>
                 </div>
@@ -183,17 +183,37 @@
                     <button type="button" data-tab="reviews" class="tab-button px-4 font-semibold cursor-pointer rounded-tl-lg rounded-tr-lg bg-stone-200">Reviews</button></div>
                 </div>
                 <section id="tab-specs" class="tab-panel p-4 bg-white rounded-bl-lg rounded-br-lg rounded-tr-lg">
-                    <p>Weight: <span id="spec-weight"></span></p>
-                    <p>Dimensions: <span id="spec-dimensions"></span></p>
-                    <p>Warranty: <span id="spec-warranty"></span></p>
-                    <p>Shipping: <span id="spec-shipping"></span></p>
-                    <p>Return policy: <span id="spec-returns"></span></p>
+                    <div class="divide-y divide-stone-100">
+                        <div class="flex justify-between gap-4 py-3">
+                            <span class="text-sm font-medium text-stone-500">Weight</span>
+                            <span id="spec-weight" class="text-right font-semibold"></span>
+                        </div>
+                        <div class="flex justify-between gap-4 py-3">
+                            <span class="text-sm font-medium text-stone-500">Dimensions</span>
+                            <span id="spec-dimensions" class="text-right font-semibold"></span>
+                        </div>
+
+                        <div class="flex justify-between gap-4 py-3">
+                            <span class="text-sm font-medium text-stone-500">Warranty</span>
+                            <span id="spec-warranty" class="text-right font-semibold"></span>
+                        </div>
+
+                        <div class="flex justify-between gap-4 py-3">
+                            <span class="text-sm font-medium text-stone-500">Shipping</span>
+                            <span id="spec-shipping" class="text-right font-semibold"></span>
+                        </div>
+
+                        <div class="flex justify-between gap-4 py-3">
+                            <span class="text-sm font-medium text-stone-500">Return</span>
+                            <span id="spec-returns" class="text-right font-semibold"></span>
+                        </div>
+
+                    </div>
                 </section>
 
                 <section id="tab-reviews" class="tab-panel hidden p-4 bg-white rounded-bl-lg rounded-br-lg rounded-tr-lg">
                     <ul id="review-list" class="max-h-96 space-y-4 overflow-y-auto"></ul>
                 </section>
-            </div>
 
         </article>
 
