@@ -83,7 +83,7 @@ export function createProductCard(product) {
     const info = document.createElement("div");
     info.className = "min-w-0";
 
-    const titleLink = createProductLink(product, "block truncate font-medium text-gray-900 hover:text-brand-600");
+    const titleLink = createProductLink(product, "block truncate font-medium text-gray-900 group-hover:text-brand-600");
     titleLink.textContent = product.title;
     info.appendChild(titleLink);
 
@@ -108,9 +108,21 @@ export function createProductCard(product) {
 
     // card div
     const card = document.createElement("div");
-    card.className = "flex flex-col rounded-lg border border-gray-200 bg-white shadow-sm";
+    card.className = "group cursor-pointer flex flex-col rounded-lg border border-gray-200 bg-white shadow-sm transition hover:shadow-lg";
     card.appendChild(imageLink);
     card.appendChild(body);
+
+    card.addEventListener("click", (e) => {
+        if (e.target.dataset.view !== undefined) {
+            return;
+        }
+        
+        if (e.target.nodeName === "BUTTON") {
+            return;
+        }
+
+        titleLink.click();
+    })
 
     return card;
 }
