@@ -144,6 +144,16 @@ export function initProductView(onCartChange) {
 
         const activePanel = document.querySelector("#tab-" + tabName);
             activePanel.classList.remove("hidden");
+
+        // Changes color of tabs when selected
+        const tabButtons = document.querySelectorAll(".tab-button");
+        for (const button of tabButtons) {
+            button.classList.remove("bg-white");
+            button.classList.add("bg-stone-200");
+        }
+
+        e.target.classList.remove("bg-stone-200");
+        e.target.classList.add("bg-white");
     });
 
     // Add to cart
